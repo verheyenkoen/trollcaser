@@ -5,6 +5,8 @@
   "author": "Koen Verheyen <verheyen.koen@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "clipboardy": "^2.1.0",
+    "colors": "^1.4.0",
     "esm": "^3.2.25"
   },
   "bin": "app.js"
