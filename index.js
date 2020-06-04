@@ -12,26 +12,7 @@ if (!text) {
 }
 
 if (text) {
-  const letters = text.split('')
-  let up = null
-
-  const regex = /[a-zA-Z]/
-  const trollcased = letters
-    .map(c => {
-      if (c.match(regex)) {
-        if (up === null) {
-          up = c === c.toUpperCase()
-        }
-
-        up = !up
-
-        return up ? c.toUpperCase() : c.toLowerCase()
-      } else {
-        return c
-      }
-    })
-    .join('')
-    .replace(/\?/g, replaceQuestionMarks)
+  const trollcased = text.replace(/[a-zA-Z]/g, trollCaseLetters).replace(/\?/g, replaceQuestionMarks)
 
   if (clipboardUsed) {
     clipboardy.writeSync(trollcased)
@@ -40,6 +21,16 @@ if (text) {
   console.log(trollcased)
 } else {
   console.error('No text found to trollcase (checked args, stdin & clipboard).'.red)
+}
+
+function trollCaseLetters(match) {
+  if (typeof trollCaseLetters.up === 'undefined') {
+    trollCaseLetters.up = match == match.toUpperCase()
+  }
+
+  trollCaseLetters.up = !trollCaseLetters.up
+
+  return trollCaseLetters.up ? match.toUpperCase() : match.toLowerCase()
 }
 
 function replaceQuestionMarks() {
