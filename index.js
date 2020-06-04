@@ -2,10 +2,7 @@ import clipboardy from 'clipboardy'
 import 'colors'
 
 // Read input from args
-let text = process.argv
-  .slice(2)
-  .join(' ')
-  .trim()
+let text = process.argv.slice(2).join(' ').trim()
 
 // Read input from clipboard
 let clipboardUsed = false
@@ -34,6 +31,7 @@ if (text) {
       }
     })
     .join('')
+    .replace(/\?/g, replaceQuestionMarks)
 
   if (clipboardUsed) {
     clipboardy.writeSync(trollcased)
@@ -42,4 +40,14 @@ if (text) {
   console.log(trollcased)
 } else {
   console.error('No text found to trollcase (checked args, stdin & clipboard).'.red)
+}
+
+function replaceQuestionMarks() {
+  if (typeof replaceQuestionMarks.up === 'undefined') {
+    replaceQuestionMarks.up = true
+  }
+
+  replaceQuestionMarks.up = !replaceQuestionMarks.up
+
+  return replaceQuestionMarks.up ? '?' : '¿'
 }
