@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "clipboardy": "^2.1.0",
+    "clipboardy": "^3.0.0",
     "colors": "^1.4.0"
   },
   "bin": "index.js"
